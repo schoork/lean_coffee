@@ -1,0 +1,12 @@
+<%= turbo_stream_from @meeting %>
+
+<div class="w-full">
+  <div class="flex items-end mb-3">
+    <h1 class="text-3xl font-bold mr-3"><%= @meeting.title %></h1>
+    <p class="text-sm text-gray-500"><%= @meeting.date.strftime("%-m/%-d/%y") %></p>
+  </div>
+
+  <%= turbo_frame_tag dom_id(@meeting) do %>
+    <%= render @meeting %>
+  <% end %>
+</div>
