@@ -4,5 +4,4 @@ class BacklogTopicComponent < ViewComponent::Base
   def initialize(topic:)
     @topic = topic
   end
-
 end

@@ -1,12 +1,11 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: %i[ update destroy ]
+  before_action :set_topic, only: %i[update destroy]
 
   def create
     @topic = Topic.new(topic_params)
 
     if @topic.save
       redirect_to @topic.meeting
-    else
     end
   end
 

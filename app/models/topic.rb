@@ -9,7 +9,7 @@ class Topic < ApplicationRecord
 
   validates :title, presence: true
 
-  after_create_commit -> { broadcast_replace_later_to meeting, partial: "meetings/meeting", locals: { meeting: meeting } }
+  after_create_commit -> { broadcast_replace_later_to meeting, partial: "meetings/meeting", locals: {meeting: meeting} }
   # after_update_commit -> { broadcast_replace_later_to self.meeting }
 
   def votes_string

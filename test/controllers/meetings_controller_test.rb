@@ -17,7 +17,7 @@ class MeetingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create meeting" do
     assert_difference("Meeting.count") do
-      post meetings_url, params: { meeting: { date: @meeting.date, status: @meeting.status, title: @meeting.title } }
+      post meetings_url, params: {meeting: {date: @meeting.date, status: @meeting.status, title: @meeting.title}}
     end
 
     assert_redirected_to meeting_url(Meeting.last)
@@ -34,7 +34,7 @@ class MeetingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update meeting" do
-    patch meeting_url(@meeting), params: { meeting: { date: @meeting.date, status: @meeting.status, title: @meeting.title } }
+    patch meeting_url(@meeting), params: {meeting: {date: @meeting.date, status: @meeting.status, title: @meeting.title}}
     assert_redirected_to meeting_url(@meeting)
   end
 
