@@ -1,17 +1,29 @@
+<div class="flex items-end mb-3">
+  <h1 class="text-3xl font-bold mr-3"><%= meeting.title %></h1>
+  <p class="text-sm text-gray-500"><%= meeting.date.strftime("%-m/%-d/%y") %></p>
+  <div class="grow grid justify-items-center">
+    <%= link_to "Backlog", backlog_meeting_path(meeting), class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_method: :patch } %>
+    <%= link_to "Finish", finished_meeting_path(meeting), class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_method: :patch } %>
+  </div>
+</div>
+
 <div class="columns-3">
-  <div class="break-after-column bg-slate-100 p-3 rounded-md">
+  <div class="break-after-column bg-slate-100 p-3 grid gap-2 rounded-md">
     <div class="text-xl font-bold text-center">To Do</div>
-    <div class="w-full border-gray-400 border-2 border-dashed rounded-md p-3 mb-2 h-48">Test 1</div>
-    <div class="w-full border-gray-400 border-2 border-dashed rounded-md p-3 mb-2 h-48">Test 2</div>
+    <% meeting.to_do_topics.each do |topic| %>
+      <%= render(TopicComponent.new(title: topic.title)) %>
+    <% end %>
   </div>
-  <div class="break-after-column bg-slate-100 p-3 rounded-md">
+  <div class="break-after-column bg-slate-100 p-3 grid gap-2 rounded-md">
     <div class="text-xl font-bold text-center">Doing</div>
-    <div class="w-full border-gray-400 border-2 border-dashed rounded-md p-3 mb-2 h-48">Test 3</div>
+    <% meeting.doing_topics.each do |topic| %>
+      <%= render(TopicComponent.new(title: topic.title)) %>
+    <% end %>
   </div>
-  <div class="break-after-column bg-slate-100 p-3 rounded-md">
+  <div class="break-after-column bg-slate-100 p-3 grid gap-2 rounded-md">
     <div class="text-xl font-bold text-center">Done</div>
-    <div class="w-full border-gray-400 border-2 border-dashed rounded-md p-3 mb-2 h-48">Test 4</div>
-    <div class="w-full border-gray-400 border-2 border-dashed rounded-md p-3 mb-2 h-48">Test 5</div>
-    <div class="w-full border-gray-400 border-2 border-dashed rounded-md p-3 mb-2 h-48">Test 6</div>
+    <% meeting.done_topics.each do |topic| %>
+      <%= render(TopicComponent.new(title: topic.title)) %>
+    <% end %>
   </div>
 </div>

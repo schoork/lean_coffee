@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: %i[ show edit update destroy ]
+  before_action :set_meeting, only: %i[ show edit update destroy backlog discussion finished ]
 
   # GET /meetings or /meetings.json
   def index
@@ -57,6 +57,24 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def backlog
+    @meeting.backlog!
+
+    redirect_to @meeting
+  end
+
+  def discussion
+    @meeting.discussion!
+
+    redirect_to @meeting
+  end
+
+  def finished
+    @meeting.finished!
+
+    redirect_to @meeting
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_meeting
@@ -65,6 +83,6 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:title, :date, :status)
+      params.require(:meeting).permit(:title, :date, :status, topics_attributes: [:id, :_destroy, :title])
     end
 end
